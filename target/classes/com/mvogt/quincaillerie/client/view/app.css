@@ -1,0 +1,246 @@
+/* Quincaillerie Mvogt — theme partage, inspire d'un dashboard de gestion de stock
+   (fond clair, cartes blanches arrondies, accent indigo, badges de statut). */
+
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-background-color: #F1F3F9;
+}
+
+.app-root {
+    -fx-background-color: #F1F3F9;
+}
+
+/* ---------- Barre superieure / marque ---------- */
+
+.top-bar {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #E5E7EF transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.brand-box {
+    -fx-background-color: white;
+    -fx-border-color: transparent #E5E7EF transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 0 16 0 20;
+}
+
+.brand-title {
+    -fx-text-fill: #232B3D;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.header-box {
+    -fx-padding: 0 20 0 16;
+}
+
+.welcome-label {
+    -fx-text-fill: #232B3D;
+    -fx-font-size: 14px;
+}
+
+.session-pill {
+    -fx-background-color: #F1F3F9;
+    -fx-text-fill: #55607A;
+    -fx-background-radius: 20;
+    -fx-padding: 6 14;
+    -fx-font-size: 12px;
+}
+
+/* ---------- Navigation laterale (TabPane side=LEFT) ---------- */
+
+.sidebar-tabs {
+    -fx-tab-min-width: 210px;
+    -fx-tab-max-width: 210px;
+}
+
+.sidebar-tabs .tab-header-area {
+    -fx-background-color: white;
+    -fx-padding: 16 0 0 0;
+}
+
+.sidebar-tabs .tab-header-area .headers-region {
+    -fx-padding: 0;
+}
+
+.sidebar-tabs .tab-header-background {
+    -fx-background-color: white;
+}
+
+.sidebar-tabs .tab {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 12 18 12 20;
+}
+
+.sidebar-tabs .tab .tab-label {
+    -fx-text-fill: #55607A;
+    -fx-font-size: 13px;
+}
+
+.sidebar-tabs .tab:selected {
+    -fx-background-color: #EEF0FF;
+}
+
+.sidebar-tabs .tab:selected .tab-label {
+    -fx-text-fill: #6C5CE7;
+    -fx-font-weight: bold;
+}
+
+.sidebar-tabs .tab:hover {
+    -fx-background-color: #F6F7FF;
+}
+
+.sidebar-tabs .tab-content-area {
+    -fx-background-color: #F1F3F9;
+    -fx-padding: 20;
+}
+
+.sidebar-tabs > .tab-header-area > .control-buttons-tab {
+    -fx-background-color: transparent;
+}
+
+/* ---------- Cartes ---------- */
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 16 20;
+    -fx-effect: dropshadow(gaussian, rgba(31,41,68,0.08), 14, 0, 0, 4);
+}
+
+.stat-title {
+    -fx-text-fill: #7A8299;
+    -fx-font-size: 12px;
+}
+
+.stat-value {
+    -fx-text-fill: #232B3D;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.stat-value-warning {
+    -fx-text-fill: #D0362C;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(31,41,68,0.08), 14, 0, 0, 4);
+}
+
+.card-title {
+    -fx-text-fill: #232B3D;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.page-title {
+    -fx-text-fill: #232B3D;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.field-label {
+    -fx-text-fill: #55607A;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.hint-label {
+    -fx-text-fill: #9AA1B4;
+    -fx-font-size: 10px;
+}
+
+.status-label {
+    -fx-text-fill: #D0362C;
+    -fx-font-size: 11px;
+}
+
+/* ---------- Badges de statut ---------- */
+
+.badge {
+    -fx-padding: 3 10;
+    -fx-background-radius: 12;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.badge-success {
+    -fx-background-color: #E4F7EC;
+    -fx-text-fill: #1F9254;
+}
+
+.badge-warning {
+    -fx-background-color: #FFF3DE;
+    -fx-text-fill: #B57A0A;
+}
+
+.badge-danger {
+    -fx-background-color: #FDE8E8;
+    -fx-text-fill: #D0362C;
+}
+
+/* ---------- Controles ----------
+   Forme/ombre/hover/focus/disabled par defaut viennent desormais du theme
+   AtlantaFX (PrimerLight, applique dans MainApp via setUserAgentStylesheet) -
+   on ne surcharge ici que la couleur de marque, pas la geometrie. */
+
+.button {
+    -fx-background-color: #6C5CE7;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #5A4CD1;
+}
+
+.button-outline {
+    -fx-text-fill: #55607A;
+    -fx-border-color: #DDE1EC;
+}
+
+.button-outline:hover {
+    -fx-background-color: #F6F7FB;
+}
+
+.button-danger-outline {
+    -fx-text-fill: #D0362C;
+    -fx-border-color: #F3C6C3;
+}
+
+.button-danger-outline:hover {
+    -fx-background-color: #FDECEC;
+}
+
+.button-block {
+    -fx-pref-width: 9999;
+}
+
+/* ---------- Ecran de connexion ---------- */
+
+.login-background {
+    -fx-background-color: linear-gradient(to bottom right, #6C5CE7, #4A3FBF);
+}
+
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(gaussian, rgba(20,20,50,0.30), 30, 0, 0, 12);
+}
+
+.login-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #232B3D;
+}
+
+.login-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7A8299;
+}

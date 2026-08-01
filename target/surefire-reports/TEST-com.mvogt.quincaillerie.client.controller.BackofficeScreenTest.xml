@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mvogt.quincaillerie.client.controller.BackofficeScreenTest" time="17.783" tests="2" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="25"/>
+    <property name="javafx.runtime.version" value="21.0.4+1"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\target\test-classes;C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\target\classes;C:\Users\Windows\.m2\repository\org\openjfx\javafx-controls\21.0.4\javafx-controls-21.0.4-win.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-graphics\21.0.4\javafx-graphics-21.0.4.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-graphics\21.0.4\javafx-graphics-21.0.4-win.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-base\21.0.4\javafx-base-21.0.4.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-base\21.0.4\javafx-base-21.0.4-win.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-fxml\21.0.4\javafx-fxml-21.0.4-win.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-controls\21.0.4\javafx-controls-21.0.4.jar;C:\Users\Windows\.m2\repository\io\github\mkpaz\atlantafx-base\2.1.0\atlantafx-base-2.1.0.jar;C:\Users\Windows\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.2\jackson-databind-2.17.2.jar;C:\Users\Windows\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.2\jackson-annotations-2.17.2.jar;C:\Users\Windows\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.2\jackson-core-2.17.2.jar;C:\Users\Windows\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.2\jackson-datatype-jsr310-2.17.2.jar;C:\Users\Windows\.m2\repository\com\github\librepdf\openpdf\2.2.2\openpdf-2.2.2.jar;C:\Users\Windows\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.3\junit-jupiter-5.10.3.jar;C:\Users\Windows\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\Windows\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Windows\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\Windows\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Windows\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\Windows\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\Windows\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\Windows\.m2\repository\org\testfx\testfx-core\4.0.18\testfx-core-4.0.18.jar;C:\Users\Windows\.m2\repository\org\hamcrest\hamcrest\2.1\hamcrest-2.1.jar;C:\Users\Windows\.m2\repository\org\assertj\assertj-core\3.13.2\assertj-core-3.13.2.jar;C:\Users\Windows\.m2\repository\org\osgi\org.osgi.core\6.0.0\org.osgi.core-6.0.0.jar;C:\Users\Windows\.m2\repository\org\testfx\testfx-junit5\4.0.18\testfx-junit5-4.0.18.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/Toronto"/>
+    <property name="javafx.version" value="21.0.4"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="25"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
+    <property name="sun.java.command" value="C:\Users\Windows\AppData\Local\Temp\surefire450315566882007946\surefirebooter-20260729154100923_3.jar C:\Users\Windows\AppData\Local\Temp\surefire450315566882007946 2026-07-29T15-41-00_034-jvmRun1 surefire-20260729154100923_1tmp surefire_0-20260729154100923_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\target\test-classes;C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\target\classes;C:\Users\Windows\.m2\repository\org\openjfx\javafx-controls\21.0.4\javafx-controls-21.0.4-win.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-graphics\21.0.4\javafx-graphics-21.0.4.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-graphics\21.0.4\javafx-graphics-21.0.4-win.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-base\21.0.4\javafx-base-21.0.4.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-base\21.0.4\javafx-base-21.0.4-win.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-fxml\21.0.4\javafx-fxml-21.0.4-win.jar;C:\Users\Windows\.m2\repository\org\openjfx\javafx-controls\21.0.4\javafx-controls-21.0.4.jar;C:\Users\Windows\.m2\repository\io\github\mkpaz\atlantafx-base\2.1.0\atlantafx-base-2.1.0.jar;C:\Users\Windows\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.2\jackson-databind-2.17.2.jar;C:\Users\Windows\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.2\jackson-annotations-2.17.2.jar;C:\Users\Windows\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.2\jackson-core-2.17.2.jar;C:\Users\Windows\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.2\jackson-datatype-jsr310-2.17.2.jar;C:\Users\Windows\.m2\repository\com\github\librepdf\openpdf\2.2.2\openpdf-2.2.2.jar;C:\Users\Windows\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.3\junit-jupiter-5.10.3.jar;C:\Users\Windows\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\Windows\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Windows\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\Windows\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Windows\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\Windows\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\Windows\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\Windows\.m2\repository\org\testfx\testfx-core\4.0.18\testfx-core-4.0.18.jar;C:\Users\Windows\.m2\repository\org\hamcrest\hamcrest\2.1\hamcrest-2.1.jar;C:\Users\Windows\.m2\repository\org\assertj\assertj-core\3.13.2\assertj-core-3.13.2.jar;C:\Users\Windows\.m2\repository\org\osgi\org.osgi.core\6.0.0\org.osgi.core-6.0.0.jar;C:\Users\Windows\.m2\repository\org\testfx\testfx-junit5\4.0.18\testfx-junit5-4.0.18.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Windows"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-01-20"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-25.0.2"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\SPRING_PROJECTS\quinquallerie\frontend-javafx"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\Windows\AppData\Local\Temp\surefire450315566882007946\surefirebooter-20260729154100923_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
+    <property name="user.name" value="Windows"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\Windows\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Windows\AppData\Local\Temp\"/>
+    <property name="java.version" value="25.0.2"/>
+    <property name="user.dir" value="C:\SPRING_PROJECTS\quinquallerie\frontend-javafx"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Users\Windows\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Windows\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\nodejs;C:\FLUTTER\bin;C:\Program Files\Microsoft SQL Server\170\Tools\Binn;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit;C:\Apache\maven\bin;C:\Program Files\Git\cmd;C:\Program Files\dotnet;C:\gradle\bin;C:\Program Files\Docker\Docker\resources\bin;C:\FLUTTER_SDK\bin;C:\Program Files\OpenSSL-Win64\bin;C:\php83;C:\ProgramData\ComposerSetup\bin;C:\Program Files\PuTTY;C:\Users\Windows\.cargo\bin;C:\Users\Windows\AppData\Local\Microsoft\WindowsApps;C:\Users\Windows\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Windows\AppData\Roaming\npm;C:\FLUTTER\bin;C:\Apache\maven\bin;C:\Users\Windows\.dotnet\tools;C:\gradle\bin;C:\FLUTTER_SDK\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.3\bin;C:\Program Files\OpenSSL-Win64\bin;C:\php83;C:\Users\Windows\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25.0.2+10-LTS-69"/>
+    <property name="stdin.encoding" value="Cp1252"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="69.0"/>
+  </properties>
+  <testcase name="backofficeAvecRoleAdminGardeTousLesOnglets" classname="com.mvogt.quincaillerie.client.controller.BackofficeScreenTest" time="16.14">
+    <system-err><![CDATA[Jul 29, 2026 3:41:08 PM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1a1d6a08'
+]]></system-err>
+  </testcase>
+  <testcase name="backofficeAvecRoleGestionnaireGardeLeTableauDeBordMaisRetireRapports" classname="com.mvogt.quincaillerie.client.controller.BackofficeScreenTest" time="1.307"/>
+</testsuite>

@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<jpackage-state version="25.0.2" platform="windows">
+  <app-version>1.0.0</app-version>
+  <main-launcher>Quincaillerie Mvogt</main-launcher>
+  <main-class>com.mvogt.quincaillerie.client.Launcher</main-class></jpackage-state>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.mvogt.quincaillerie.client.controller.VenteScreenController"
+            styleClass="app-root"
+            stylesheets="@app.css"
+            prefWidth="1000" prefHeight="640">
+    <top>
+        <HBox alignment="CENTER_LEFT" styleClass="top-bar">
+            <HBox alignment="CENTER_LEFT" spacing="10" prefWidth="210" styleClass="brand-box">
+                <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
+                    <Image url="@logo.png"/>
+                </ImageView>
+                <Label text="Quincaillerie Mvogt" styleClass="brand-title"/>
+            </HBox>
+            <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="12" styleClass="header-box">
+                <Label text="Poste de vente" styleClass="welcome-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="sessionLabel" styleClass="session-pill"/>
+                <Button text="Deconnexion" onAction="#handleDeconnexion" styleClass="button-danger-outline"/>
+            </HBox>
+        </HBox>
+    </top>
+    <center>
+        <HBox spacing="16">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS">
+                <Label text="Rechercher un produit" styleClass="card-title"/>
+                <HBox spacing="6">
+                    <TextField fx:id="rechercheField" promptText="Reference ou nom" HBox.hgrow="ALWAYS"/>
+                    <Button text="Rechercher" onAction="#handleRecherche" styleClass="button-outline"/>
+                </HBox>
+                <TableView fx:id="produitsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colReference" text="Reference" prefWidth="100"/>
+                        <TableColumn fx:id="colNom" text="Nom" prefWidth="180"/>
+                        <TableColumn fx:id="colPrixVente" text="Prix" prefWidth="80"/>
+                        <TableColumn fx:id="colStock" text="Stock" prefWidth="70"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="6" alignment="CENTER_LEFT">
+                    <Label text="Quantite :"/>
+                    <TextField fx:id="quantiteField" prefWidth="60" text="1"/>
+                    <Button text="Ajouter au panier" onAction="#handleAjouterAuPanier"/>
+                </HBox>
+            </VBox>
+            <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS">
+                <Label text="Panier" styleClass="card-title"/>
+                <TableView fx:id="panierTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colPanierProduit" text="Produit" prefWidth="150"/>
+                        <TableColumn fx:id="colPanierQuantite" text="Qte" prefWidth="60"/>
+                        <TableColumn fx:id="colPanierPrixUnitaire" text="P.U." prefWidth="80"/>
+                        <TableColumn fx:id="colPanierSousTotal" text="Sous-total" prefWidth="90"/>
+                    </columns>
+                </TableView>
+                <Button text="Retirer la ligne selectionnee" onAction="#handleRetirerLigne" styleClass="button-danger-outline"/>
+                <Label fx:id="totalLabel" text="Total : 0 FCFA" styleClass="stat-value"/>
+                <Button fx:id="validerButton" text="Valider la vente" onAction="#handleValiderVente" styleClass="button-block"/>
+            </VBox>
+        </HBox>
+    </center>
+    <bottom>
+        <Label fx:id="statusLabel" styleClass="status-label" style="-fx-padding: 8;"/>
+    </bottom>
+</BorderPane>

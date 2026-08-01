@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.mvogt.quincaillerie.client.controller.UtilisateursTabController"
+      spacing="16">
+    <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS">
+        <Label text="Utilisateurs" styleClass="card-title"/>
+        <TableView fx:id="utilisateursTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colNom" text="Nom" prefWidth="150"/>
+                <TableColumn fx:id="colLogin" text="Login" prefWidth="120"/>
+                <TableColumn fx:id="colRole" text="Role" prefWidth="110"/>
+                <TableColumn fx:id="colActif" text="Actif" prefWidth="60"/>
+            </columns>
+        </TableView>
+    </VBox>
+    <VBox spacing="10" prefWidth="300" styleClass="card">
+        <Label text="Fiche utilisateur" styleClass="card-title"/>
+        <GridPane hgap="8" vgap="8">
+            <Label text="Nom" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Login" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="loginField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Mot de passe" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <PasswordField fx:id="motDePasseField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Role" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <ComboBox fx:id="roleCombo" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity"/>
+
+            <Label text="Actif" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <CheckBox fx:id="actifCheck" GridPane.columnIndex="1" GridPane.rowIndex="4" selected="true"/>
+        </GridPane>
+        <Label text="(laisser le mot de passe vide pour ne pas le changer)" wrapText="true" styleClass="hint-label"/>
+        <HBox spacing="6">
+            <Button text="Nouveau" onAction="#handleNouveau" styleClass="button-outline"/>
+            <Button text="Enregistrer" onAction="#handleEnregistrer"/>
+        </HBox>
+        <Label fx:id="statusLabel" wrapText="true" styleClass="status-label"/>
+    </VBox>
+</HBox>
