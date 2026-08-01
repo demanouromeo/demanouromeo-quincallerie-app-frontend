@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -31,7 +32,11 @@
                 <Label text="Poste de vente" styleClass="welcome-label"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label fx:id="sessionLabel" styleClass="session-pill"/>
-                <Button text="Deconnexion" onAction="#handleDeconnexion" styleClass="button-danger-outline"/>
+                <Button text="Deconnexion" onAction="#handleDeconnexion" styleClass="button-danger-outline">
+                    <tooltip>
+                        <Tooltip text="Se deconnecter et revenir a l'ecran de connexion"/>
+                    </tooltip>
+                </Button>
             </HBox>
         </HBox>
     </top>
@@ -44,7 +49,11 @@
                 <Label text="Rechercher un produit" styleClass="card-title"/>
                 <HBox spacing="6">
                     <TextField fx:id="rechercheField" promptText="Reference ou nom" HBox.hgrow="ALWAYS"/>
-                    <Button text="Rechercher" onAction="#handleRecherche" styleClass="button-outline"/>
+                    <Button text="Rechercher" onAction="#handleRecherche" styleClass="button-outline">
+                        <tooltip>
+                            <Tooltip text="Rechercher un produit par reference ou nom"/>
+                        </tooltip>
+                    </Button>
                 </HBox>
                 <TableView fx:id="produitsTable" VBox.vgrow="ALWAYS">
                     <columns>
@@ -57,7 +66,11 @@
                 <HBox spacing="6" alignment="CENTER_LEFT">
                     <Label text="Quantite :"/>
                     <TextField fx:id="quantiteField" prefWidth="60" text="1"/>
-                    <Button text="Ajouter au panier" onAction="#handleAjouterAuPanier"/>
+                    <Button text="Ajouter au panier" onAction="#handleAjouterAuPanier">
+                        <tooltip>
+                            <Tooltip text="Ajouter le produit selectionne au panier"/>
+                        </tooltip>
+                    </Button>
                 </HBox>
             </VBox>
             <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS">
@@ -70,9 +83,17 @@
                         <TableColumn fx:id="colPanierSousTotal" text="Sous-total" prefWidth="90"/>
                     </columns>
                 </TableView>
-                <Button text="Retirer la ligne selectionnee" onAction="#handleRetirerLigne" styleClass="button-danger-outline"/>
+                <Button text="Retirer la ligne selectionnee" onAction="#handleRetirerLigne" styleClass="button-danger-outline">
+                    <tooltip>
+                        <Tooltip text="Retirer la ligne selectionnee du panier"/>
+                    </tooltip>
+                </Button>
                 <Label fx:id="totalLabel" text="Total : 0 FCFA" styleClass="stat-value"/>
-                <Button fx:id="validerButton" text="Valider la vente" onAction="#handleValiderVente" styleClass="button-block"/>
+                <Button fx:id="validerButton" text="Valider la vente" onAction="#handleValiderVente" styleClass="button-block">
+                    <tooltip>
+                        <Tooltip text="Valider la vente et imprimer le recu"/>
+                    </tooltip>
+                </Button>
             </VBox>
         </HBox>
     </center>

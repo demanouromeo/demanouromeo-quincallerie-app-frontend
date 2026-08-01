@@ -6,6 +6,7 @@ import com.mvogt.quincaillerie.client.model.FournisseurRequest;
 import com.mvogt.quincaillerie.client.model.FournisseurResponse;
 import com.mvogt.quincaillerie.client.session.Session;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class FournisseursTabController {
 
@@ -39,9 +39,9 @@ public class FournisseursTabController {
 
     @FXML
     public void initialize() {
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
-        colAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+        colNom.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().nom()));
+        colContact.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().contact()));
+        colAdresse.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().adresse()));
         fournisseursTable.setItems(fournisseurs);
         fournisseursTable.getSelectionModel().selectedItemProperty().addListener((obs, ancien, nouveau) -> {
             if (nouveau != null) {

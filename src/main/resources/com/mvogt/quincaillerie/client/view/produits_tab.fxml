@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -20,10 +21,15 @@
             <Label text="Produits &amp; Stock" styleClass="card-title"/>
             <CheckBox fx:id="alertesSeulementCheck" text="Alertes seulement (stock &lt;= seuil)"
                       onAction="#handleToggleAlertes"/>
-            <Button text="Rafraichir" onAction="#handleRafraichir" styleClass="button-outline"/>
+            <Button text="Rafraichir" onAction="#handleRafraichir" styleClass="button-outline">
+                <tooltip>
+                    <Tooltip text="Recharger la liste des produits"/>
+                </tooltip>
+            </Button>
         </HBox>
         <TableView fx:id="produitsTable" VBox.vgrow="ALWAYS">
             <columns>
+                <TableColumn fx:id="colIndex" text="#" prefWidth="40" sortable="false"/>
                 <TableColumn fx:id="colReference" text="Reference" prefWidth="90"/>
                 <TableColumn fx:id="colNom" text="Nom" prefWidth="160"/>
                 <TableColumn fx:id="colCategorie" text="Categorie" prefWidth="110"/>
@@ -63,9 +69,21 @@
             <TextField fx:id="stockActuelField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
         </GridPane>
         <HBox spacing="6">
-            <Button text="Nouveau" onAction="#handleNouveau" styleClass="button-outline"/>
-            <Button fx:id="enregistrerButton" text="Enregistrer" onAction="#handleEnregistrer"/>
-            <Button fx:id="supprimerButton" text="Supprimer" onAction="#handleSupprimer" styleClass="button-danger-outline"/>
+            <Button text="Nouveau" onAction="#handleNouveau" styleClass="button-outline">
+                <tooltip>
+                    <Tooltip text="Vider la fiche pour creer un nouveau produit"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="enregistrerButton" text="Enregistrer" onAction="#handleEnregistrer">
+                <tooltip>
+                    <Tooltip text="Enregistrer le produit"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="supprimerButton" text="Supprimer" onAction="#handleSupprimer" styleClass="button-danger-outline">
+                <tooltip>
+                    <Tooltip text="Supprimer le produit selectionne"/>
+                </tooltip>
+            </Button>
         </HBox>
         <Label fx:id="statusLabel" wrapText="true" styleClass="status-label"/>
     </VBox>

@@ -13,6 +13,7 @@ import com.mvogt.quincaillerie.client.model.LigneApprovisionnementRequest;
 import com.mvogt.quincaillerie.client.model.ProduitResponse;
 import com.mvogt.quincaillerie.client.session.Session;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -80,12 +81,12 @@ public class ApprovisionnementsTabController {
         colLigneSousTotal.setCellValueFactory(new PropertyValueFactory<>("sousTotal"));
         lignesTable.setItems(lignes);
 
-        colHistoId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colHistoId.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().id()));
         colHistoDate.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(DATE_FORMAT.format(data.getValue().dateAppro())));
-        colHistoFournisseur.setCellValueFactory(new PropertyValueFactory<>("fournisseurNom"));
-        colHistoGestionnaire.setCellValueFactory(new PropertyValueFactory<>("gestionnaireLogin"));
-        colHistoMontant.setCellValueFactory(new PropertyValueFactory<>("montantTotal"));
+        colHistoFournisseur.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().fournisseurNom()));
+        colHistoGestionnaire.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().gestionnaireLogin()));
+        colHistoMontant.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().montantTotal()));
         historiqueTable.setItems(historique);
 
         chargerFournisseurs();

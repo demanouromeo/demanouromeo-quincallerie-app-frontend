@@ -12,6 +12,7 @@ import com.mvogt.quincaillerie.client.model.VenteResponse;
 import com.mvogt.quincaillerie.client.service.ReceiptService;
 import com.mvogt.quincaillerie.client.session.Session;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -71,10 +72,10 @@ public class VenteScreenController {
     public void initialize() {
         sessionLabel.setText(Session.getInstance().getLogin() + " (" + Session.getInstance().getRole() + ")");
 
-        colReference.setCellValueFactory(new PropertyValueFactory<>("reference"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colPrixVente.setCellValueFactory(new PropertyValueFactory<>("prixVente"));
-        colStock.setCellValueFactory(new PropertyValueFactory<>("stockActuel"));
+        colReference.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().reference()));
+        colNom.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().nom()));
+        colPrixVente.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().prixVente()));
+        colStock.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().stockActuel()));
         produitsTable.setItems(produits);
 
         colPanierProduit.setCellValueFactory(new PropertyValueFactory<>("produitNom"));

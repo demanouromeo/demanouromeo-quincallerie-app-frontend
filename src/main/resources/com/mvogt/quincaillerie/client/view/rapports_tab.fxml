@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
@@ -15,7 +16,11 @@
     <HBox spacing="10" alignment="CENTER_LEFT">
         <Label text="Rapports" styleClass="page-title"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="Rafraichir" onAction="#handleRafraichir" styleClass="button-outline"/>
+        <Button text="Rafraichir" onAction="#handleRafraichir" styleClass="button-outline">
+            <tooltip>
+                <Tooltip text="Recalculer les rapports a partir des dernieres ventes"/>
+            </tooltip>
+        </Button>
     </HBox>
     <HBox spacing="16">
         <VBox spacing="6" styleClass="stat-card" HBox.hgrow="ALWAYS">

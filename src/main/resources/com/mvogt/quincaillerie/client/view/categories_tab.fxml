@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -27,9 +28,21 @@
             <TextField fx:id="nomField" HBox.hgrow="ALWAYS"/>
         </HBox>
         <HBox spacing="6">
-            <Button text="Nouveau" onAction="#handleNouveau" styleClass="button-outline"/>
-            <Button text="Enregistrer" onAction="#handleEnregistrer"/>
-            <Button text="Supprimer" onAction="#handleSupprimer" styleClass="button-danger-outline"/>
+            <Button text="Nouveau" onAction="#handleNouveau" styleClass="button-outline">
+                <tooltip>
+                    <Tooltip text="Vider la fiche pour creer une nouvelle categorie"/>
+                </tooltip>
+            </Button>
+            <Button text="Enregistrer" onAction="#handleEnregistrer">
+                <tooltip>
+                    <Tooltip text="Enregistrer la categorie"/>
+                </tooltip>
+            </Button>
+            <Button text="Supprimer" onAction="#handleSupprimer" styleClass="button-danger-outline">
+                <tooltip>
+                    <Tooltip text="Supprimer la categorie selectionnee"/>
+                </tooltip>
+            </Button>
         </HBox>
         <Label fx:id="statusLabel" wrapText="true" styleClass="status-label"/>
     </VBox>

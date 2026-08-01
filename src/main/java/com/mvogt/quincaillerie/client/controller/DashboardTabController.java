@@ -2,7 +2,9 @@ package com.mvogt.quincaillerie.client.controller;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -17,6 +19,9 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -44,6 +49,8 @@ public class DashboardTabController {
     @FXML
     private TableView<ProduitResponse> produitsTable;
     @FXML
+    private TableColumn<ProduitResponse, ProduitResponse> colIndex;
+    @FXML
     private TableColumn<ProduitResponse, String> colReference;
     @FXML
     private TableColumn<ProduitResponse, String> colNom;
@@ -56,6 +63,10 @@ public class DashboardTabController {
     @FXML
     private TableColumn<ProduitResponse, ProduitResponse> colStatut;
     @FXML
+    private PieChart statutChart;
+    @FXML
+    private BarChart<String, Number> categorieChart;
+    @FXML
     private Label statusLabel;
 
     private final ObservableList<ProduitResponse> produits = FXCollections.observableArrayList();
@@ -64,6 +75,14 @@ public class DashboardTabController {
 
     @FXML
     public void initialize() {
+        colIndex.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        colIndex.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(ProduitResponse produit, boolean vide) {
+                super.updateItem(produit, vide);
+                setText(vide ? null : String.valueOf(getIndex() + 1));
+            }
+        });
         colReference.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().reference()));
         colNom.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().nom()));
         colCategorie.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().categorieNom()));
@@ -148,6 +167,29 @@ public class DashboardTabController {
         sousSeuilLabel.setText(String.valueOf(sousSeuil));
         derniereMajLabel.setText(LocalTime.now().format(FORMAT_HEURE));
         statusLabel.setText("");
+        mettreAJourGraphiques(resultat);
+    }
+
+    private void mettreAJourGraphiques(List<ProduitResponse> resultat) {
+        long rupture = resultat.stream().filter(p -> p.stockActuel() <= 0).count();
+        long stockFaible = resultat.stream()
+                .filter(p -> p.stockActuel() > 0 && p.stockActuel() <= p.seuilAlerte()).count();
+        long enStock = resultat.size() - rupture - stockFaible;
+        statutChart.setData(FXCollections.observableArrayList(
+                new PieChart.Data("En stock (" + enStock + ")", enStock),
+                new PieChart.Data("Stock faible (" + stockFaible + ")", stockFaible),
+                new PieChart.Data("Rupture (" + rupture + ")", rupture)));
+
+        Map<String, Integer> stockParCategorie = new LinkedHashMap<>();
+        for (ProduitResponse produit : resultat) {
+            stockParCategorie.merge(produit.categorieNom(), produit.stockActuel(), Integer::sum);
+        }
+        XYChart.Series<String, Number> serie = new XYChart.Series<>();
+        stockParCategorie.entrySet().stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .limit(6)
+                .forEach(entry -> serie.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue())));
+        categorieChart.setData(FXCollections.observableArrayList(serie));
     }
 
     private static ThreadFactory daemonThreadFactory() {

@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -47,8 +48,16 @@
         </GridPane>
         <Label text="(laisser le mot de passe vide pour ne pas le changer)" wrapText="true" styleClass="hint-label"/>
         <HBox spacing="6">
-            <Button text="Nouveau" onAction="#handleNouveau" styleClass="button-outline"/>
-            <Button text="Enregistrer" onAction="#handleEnregistrer"/>
+            <Button text="Nouveau" onAction="#handleNouveau" styleClass="button-outline">
+                <tooltip>
+                    <Tooltip text="Vider la fiche pour creer un nouvel utilisateur"/>
+                </tooltip>
+            </Button>
+            <Button text="Enregistrer" onAction="#handleEnregistrer">
+                <tooltip>
+                    <Tooltip text="Enregistrer l'utilisateur"/>
+                </tooltip>
+            </Button>
         </HBox>
         <Label fx:id="statusLabel" wrapText="true" styleClass="status-label"/>
     </VBox>

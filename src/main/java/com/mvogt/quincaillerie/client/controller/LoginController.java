@@ -54,19 +54,42 @@ public class LoginController {
 
     @FXML
     private void handleLogin() {
+        String login = loginField.getText();
+        String motDePasse = passwordField.getText();
+
+        if (login == null || login.isBlank()) {
+            statusLabel.setText("L'identifiant est requis.");
+            return;
+        }
+        if (motDePasse == null || motDePasse.isBlank()) {
+            statusLabel.setText("Le mot de passe est requis.");
+            return;
+        }
+
         statusLabel.setText("Connexion en cours...");
         loginButton.setDisable(true);
 
-        String login = loginField.getText();
         try {
-            LoginRequest request = new LoginRequest(login, passwordField.getText());
+            LoginRequest request = new LoginRequest(login, motDePasse);
             LoginResponse response = Session.getInstance().getApiClient().post("/auth/login", request, LoginResponse.class);
             Session.getInstance().ouvrir(login, response.token(), response.role());
             ouvrirEcranPourRole(response.role());
         } catch (Exception e) {
-            statusLabel.setText("Echec de connexion : " + e.getMessage());
+            statusLabel.setText(messageConvivial(e));
             loginButton.setDisable(false);
         }
+    }
+
+    /** Traduit l'exception technique (souvent un corps JSON brut du serveur) en message
+     *  comprehensible pour l'utilisateur, sans jamais afficher la reponse du serveur. */
+    private String messageConvivial(Exception e) {
+        String message = e.getMessage();
+        boolean erreurAuthentification = message != null
+                && (message.contains("Erreur API (400") || message.contains("Erreur API (401") || message.contains("Erreur API (403"));
+        if (erreurAuthentification) {
+            return "Identifiant ou mot de passe incorrect.";
+        }
+        return "Erreur : impossible de contacter le serveur. Veuillez reessayer.";
     }
 
     private void ouvrirEcranPourRole(String role) throws Exception {

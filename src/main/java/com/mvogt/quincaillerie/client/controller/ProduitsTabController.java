@@ -8,6 +8,7 @@ import com.mvogt.quincaillerie.client.model.ProduitRequest;
 import com.mvogt.quincaillerie.client.model.ProduitResponse;
 import com.mvogt.quincaillerie.client.session.Session;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,10 +16,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
 
 public class ProduitsTabController {
@@ -27,6 +28,8 @@ public class ProduitsTabController {
     private CheckBox alertesSeulementCheck;
     @FXML
     private TableView<ProduitResponse> produitsTable;
+    @FXML
+    private TableColumn<ProduitResponse, ProduitResponse> colIndex;
     @FXML
     private TableColumn<ProduitResponse, String> colReference;
     @FXML
@@ -70,14 +73,22 @@ public class ProduitsTabController {
 
     @FXML
     public void initialize() {
-        colReference.setCellValueFactory(new PropertyValueFactory<>("reference"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colCategorie.setCellValueFactory(new PropertyValueFactory<>("categorieNom"));
-        colUnite.setCellValueFactory(new PropertyValueFactory<>("unite"));
-        colPrixAchat.setCellValueFactory(new PropertyValueFactory<>("prixAchat"));
-        colPrixVente.setCellValueFactory(new PropertyValueFactory<>("prixVente"));
-        colSeuilAlerte.setCellValueFactory(new PropertyValueFactory<>("seuilAlerte"));
-        colStock.setCellValueFactory(new PropertyValueFactory<>("stockActuel"));
+        colIndex.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        colIndex.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(ProduitResponse produit, boolean vide) {
+                super.updateItem(produit, vide);
+                setText(vide ? null : String.valueOf(getIndex() + 1));
+            }
+        });
+        colReference.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().reference()));
+        colNom.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().nom()));
+        colCategorie.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().categorieNom()));
+        colUnite.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().unite()));
+        colPrixAchat.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().prixAchat()));
+        colPrixVente.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().prixVente()));
+        colSeuilAlerte.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().seuilAlerte()));
+        colStock.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().stockActuel()));
         produitsTable.setItems(produits);
         produitsTable.getSelectionModel().selectedItemProperty().addListener((obs, ancien, nouveau) -> {
             if (nouveau != null) {

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -36,9 +37,21 @@
             <TextField fx:id="adresseField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
         </GridPane>
         <HBox spacing="6">
-            <Button text="Nouveau" onAction="#handleNouveau" styleClass="button-outline"/>
-            <Button text="Enregistrer" onAction="#handleEnregistrer"/>
-            <Button text="Supprimer" onAction="#handleSupprimer" styleClass="button-danger-outline"/>
+            <Button text="Nouveau" onAction="#handleNouveau" styleClass="button-outline">
+                <tooltip>
+                    <Tooltip text="Vider la fiche pour creer un nouveau fournisseur"/>
+                </tooltip>
+            </Button>
+            <Button text="Enregistrer" onAction="#handleEnregistrer">
+                <tooltip>
+                    <Tooltip text="Enregistrer le fournisseur"/>
+                </tooltip>
+            </Button>
+            <Button text="Supprimer" onAction="#handleSupprimer" styleClass="button-danger-outline">
+                <tooltip>
+                    <Tooltip text="Supprimer le fournisseur selectionne"/>
+                </tooltip>
+            </Button>
         </HBox>
         <Label fx:id="statusLabel" wrapText="true" styleClass="status-label"/>
     </VBox>

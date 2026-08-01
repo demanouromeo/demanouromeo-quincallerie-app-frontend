@@ -6,6 +6,7 @@ import com.mvogt.quincaillerie.client.model.UtilisateurRequest;
 import com.mvogt.quincaillerie.client.model.UtilisateurResponse;
 import com.mvogt.quincaillerie.client.session.Session;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +17,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class UtilisateursTabController {
 
@@ -48,10 +48,10 @@ public class UtilisateursTabController {
 
     @FXML
     public void initialize() {
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colLogin.setCellValueFactory(new PropertyValueFactory<>("login"));
-        colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
-        colActif.setCellValueFactory(new PropertyValueFactory<>("actif"));
+        colNom.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().nom()));
+        colLogin.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().login()));
+        colRole.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().role()));
+        colActif.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().actif()));
         utilisateursTable.setItems(utilisateurs);
         utilisateursTable.getSelectionModel().selectedItemProperty().addListener((obs, ancien, nouveau) -> {
             if (nouveau != null) {

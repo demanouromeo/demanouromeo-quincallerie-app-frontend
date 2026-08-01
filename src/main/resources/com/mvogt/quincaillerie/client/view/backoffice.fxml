@@ -4,8 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -19,16 +18,17 @@
     <top>
         <HBox alignment="CENTER_LEFT" styleClass="top-bar">
             <HBox alignment="CENTER_LEFT" spacing="10" prefWidth="210" styleClass="brand-box">
-                <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
-                    <Image url="@logo.png"/>
-                </ImageView>
-                <Label text="Quincallerie ETOUD" styleClass="brand-title"/>
+                <Label text="Quincaillerie ETOUD" styleClass="brand-title"/>
             </HBox>
             <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="12" styleClass="header-box">
                 <Label text="Espace de gestion" styleClass="welcome-label"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label fx:id="sessionLabel" styleClass="session-pill"/>
-                <Button text="Deconnexion" onAction="#handleDeconnexion" styleClass="button-danger-outline"/>
+                <Button text="Deconnexion" onAction="#handleDeconnexion" styleClass="button-danger-outline">
+                    <tooltip>
+                        <Tooltip text="Se deconnecter et revenir a l'ecran de connexion"/>
+                    </tooltip>
+                </Button>
             </HBox>
         </HBox>
     </top>

@@ -187,6 +187,45 @@
     -fx-text-fill: #D0362C;
 }
 
+/* ---------- Graphiques du tableau de bord ---------- */
+
+.stock-status-chart {
+    -fx-legend-side: bottom;
+}
+
+.stock-status-chart .chart-legend-item {
+    -fx-text-fill: #55607A;
+    -fx-font-size: 11px;
+}
+
+.stock-status-chart .data0.chart-pie {
+    -fx-pie-color: #1F9254;
+}
+
+.stock-status-chart .data1.chart-pie {
+    -fx-pie-color: #B57A0A;
+}
+
+.stock-status-chart .data2.chart-pie {
+    -fx-pie-color: #D0362C;
+}
+
+.category-bar-chart .chart-bar {
+    -fx-bar-fill: #5883C9;
+}
+
+.category-bar-chart .axis {
+    -fx-tick-label-fill: #55607A;
+}
+
+.category-bar-chart .axis-label {
+    -fx-text-fill: #55607A;
+}
+
+.category-bar-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+
 /* ---------- Controles ----------
    Forme/ombre/hover/focus/disabled par defaut viennent desormais du theme
    AtlantaFX (PrimerLight, applique dans MainApp via setUserAgentStylesheet) -
@@ -199,6 +238,27 @@
 
 .button:hover {
     -fx-background-color: #4A73B3;
+}
+
+/* Coins arrondis et suppression de la bordure (y compris l'anneau de focus/
+   pression du theme AtlantaFX, qui reintroduit un double calque colore) sur
+   tous les boutons de l'app, hors ecran de connexion (.login-background) —
+   les deux ecrans racines post-connexion portent tous deux .app-root. */
+
+.app-root .button,
+.app-root .button:hover,
+.app-root .button:focused,
+.app-root .button:armed,
+.app-root .button:focused:armed {
+    -fx-background-radius: 8px;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+}
+
+.app-root .button-outline,
+.app-root .button-danger-outline {
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
 }
 
 .button-outline {

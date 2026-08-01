@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -15,21 +16,27 @@
       spacing="16">
     <VBox spacing="10" prefWidth="420" styleClass="card">
         <Label text="Nouvel approvisionnement" styleClass="card-title"/>
-        <HBox spacing="6" alignment="CENTER_LEFT">
+        <VBox spacing="4">
             <Label text="Fournisseur"/>
-            <ComboBox fx:id="fournisseurCombo" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-        </HBox>
-        <HBox spacing="6" alignment="CENTER_LEFT">
+            <ComboBox fx:id="fournisseurCombo" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="4">
             <Label text="Produit"/>
-            <ComboBox fx:id="produitCombo" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-        </HBox>
-        <HBox spacing="6" alignment="CENTER_LEFT">
-            <Label text="Qte"/>
-            <TextField fx:id="quantiteField" prefWidth="60" text="1"/>
-            <Label text="Prix achat unitaire"/>
-            <TextField fx:id="prixAchatUnitaireField" prefWidth="90"/>
-            <Button text="Ajouter ligne" onAction="#handleAjouterLigne" styleClass="button-outline"/>
-        </HBox>
+            <ComboBox fx:id="produitCombo" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="6">
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="Quantite"/>
+                <TextField fx:id="quantiteField" prefWidth="60" text="1"/>
+                <Label text="P.U."/>
+                <TextField fx:id="prixAchatUnitaireField" prefWidth="90"/>
+            </HBox>
+            <Button text="Ajouter ligne" onAction="#handleAjouterLigne" styleClass="button-outline" maxWidth="Infinity">
+                <tooltip>
+                    <Tooltip text="Ajouter la ligne au bon d'approvisionnement"/>
+                </tooltip>
+            </Button>
+        </VBox>
         <TableView fx:id="lignesTable" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="colLigneProduit" text="Produit" prefWidth="150"/>
@@ -39,15 +46,27 @@
             </columns>
         </TableView>
         <HBox spacing="6">
-            <Button text="Retirer la ligne" onAction="#handleRetirerLigne" styleClass="button-danger-outline"/>
-            <Button fx:id="validerButton" text="Valider l'approvisionnement" onAction="#handleValider"/>
+            <Button text="Retirer la ligne" onAction="#handleRetirerLigne" styleClass="button-danger-outline">
+                <tooltip>
+                    <Tooltip text="Retirer la ligne selectionnee du bon"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="validerButton" text="Valider l'approvisionnement" onAction="#handleValider">
+                <tooltip>
+                    <Tooltip text="Enregistrer l'approvisionnement et mettre a jour le stock"/>
+                </tooltip>
+            </Button>
         </HBox>
         <Label fx:id="statusLabel" wrapText="true" styleClass="status-label"/>
     </VBox>
     <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS">
         <HBox spacing="6" alignment="CENTER_LEFT">
             <Label text="Historique" styleClass="card-title"/>
-            <Button text="Rafraichir" onAction="#handleRafraichirHistorique" styleClass="button-outline"/>
+            <Button text="Rafraichir" onAction="#handleRafraichirHistorique" styleClass="button-outline">
+                <tooltip>
+                    <Tooltip text="Recharger l'historique des approvisionnements"/>
+                </tooltip>
+            </Button>
         </HBox>
         <TableView fx:id="historiqueTable" VBox.vgrow="ALWAYS">
             <columns>

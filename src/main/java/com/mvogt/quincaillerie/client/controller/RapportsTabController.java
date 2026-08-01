@@ -15,13 +15,13 @@ import com.mvogt.quincaillerie.client.model.ProduitVenduDto;
 import com.mvogt.quincaillerie.client.model.VenteResponse;
 import com.mvogt.quincaillerie.client.session.Session;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RapportsTabController {
 
@@ -46,8 +46,8 @@ public class RapportsTabController {
 
     @FXML
     public void initialize() {
-        colProduitNom.setCellValueFactory(new PropertyValueFactory<>("produitNom"));
-        colQuantiteVendue.setCellValueFactory(new PropertyValueFactory<>("quantiteVendue"));
+        colProduitNom.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().produitNom()));
+        colQuantiteVendue.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().quantiteVendue()));
         topProduitsTable.setItems(topProduits);
         charger();
     }
