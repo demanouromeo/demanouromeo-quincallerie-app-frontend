@@ -36,7 +36,13 @@
 
         <VBox spacing="6">
             <Label text="Mot de passe" styleClass="field-label"/>
-            <PasswordField fx:id="passwordField"/>
+            <StackPane alignment="CENTER_RIGHT">
+                <PasswordField fx:id="passwordField" styleClass="password-input"/>
+                <TextField fx:id="passwordVisibleField" managed="false" visible="false" styleClass="password-input"/>
+                <Button fx:id="togglePasswordButton" text="👁" onAction="#handleTogglePassword"
+                        focusTraversable="false" styleClass="password-toggle-button"
+                        StackPane.alignment="CENTER_RIGHT"/>
+            </StackPane>
         </VBox>
 
         <Button fx:id="loginButton" text="Se connecter" onAction="#handleLogin"

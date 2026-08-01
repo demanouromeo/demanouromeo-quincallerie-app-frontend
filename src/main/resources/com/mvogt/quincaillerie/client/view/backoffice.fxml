@@ -22,7 +22,7 @@
                 <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
                     <Image url="@logo.png"/>
                 </ImageView>
-                <Label text="Quincaillerie Mvogt" styleClass="brand-title"/>
+                <Label text="Quincallerie ETOUD" styleClass="brand-title"/>
             </HBox>
             <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="12" styleClass="header-box">
                 <Label text="Espace de gestion" styleClass="welcome-label"/>

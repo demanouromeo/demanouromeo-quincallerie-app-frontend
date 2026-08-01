@@ -22,7 +22,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Vue d'ensemble du stock avec actualisation automatique periodique. L'appel HTTP (bloquant,
@@ -65,11 +64,11 @@ public class DashboardTabController {
 
     @FXML
     public void initialize() {
-        colReference.setCellValueFactory(new PropertyValueFactory<>("reference"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colCategorie.setCellValueFactory(new PropertyValueFactory<>("categorieNom"));
-        colStockActuel.setCellValueFactory(new PropertyValueFactory<>("stockActuel"));
-        colSeuilAlerte.setCellValueFactory(new PropertyValueFactory<>("seuilAlerte"));
+        colReference.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().reference()));
+        colNom.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().nom()));
+        colCategorie.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().categorieNom()));
+        colStockActuel.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().stockActuel()));
+        colSeuilAlerte.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().seuilAlerte()));
         colStatut.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
         colStatut.setCellFactory(col -> new TableCell<>() {
             @Override

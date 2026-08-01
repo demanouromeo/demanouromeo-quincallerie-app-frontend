@@ -1,5 +1,6 @@
 /* Quincaillerie Mvogt — theme partage, inspire d'un dashboard de gestion de stock
-   (fond clair, cartes blanches arrondies, accent indigo, badges de statut). */
+   (fond clair, cartes blanches arrondies, accent bleu de marque tire du logo,
+   badges de statut). Accent #5883C9 = couleur dominante de logo.png. */
 
 .root {
     -fx-font-family: "Segoe UI";
@@ -82,16 +83,16 @@
 }
 
 .sidebar-tabs .tab:selected {
-    -fx-background-color: #EEF0FF;
+    -fx-background-color: #E9F1FA;
 }
 
 .sidebar-tabs .tab:selected .tab-label {
-    -fx-text-fill: #6C5CE7;
+    -fx-text-fill: #5883C9;
     -fx-font-weight: bold;
 }
 
 .sidebar-tabs .tab:hover {
-    -fx-background-color: #F6F7FF;
+    -fx-background-color: #F3F6FB;
 }
 
 .sidebar-tabs .tab-content-area {
@@ -192,12 +193,12 @@
    on ne surcharge ici que la couleur de marque, pas la geometrie. */
 
 .button {
-    -fx-background-color: #6C5CE7;
+    -fx-background-color: #5883C9;
     -fx-text-fill: white;
 }
 
 .button:hover {
-    -fx-background-color: #5A4CD1;
+    -fx-background-color: #4A73B3;
 }
 
 .button-outline {
@@ -225,7 +226,7 @@
 /* ---------- Ecran de connexion ---------- */
 
 .login-background {
-    -fx-background-color: linear-gradient(to bottom right, #6C5CE7, #4A3FBF);
+    -fx-background-color: linear-gradient(to bottom right, #5883C9, #3C5A8A);
 }
 
 .login-card {
@@ -243,4 +244,39 @@
 .login-subtitle {
     -fx-font-size: 12px;
     -fx-text-fill: #7A8299;
+}
+
+/* Champ mot de passe avec icone oeil : la marge droite du champ reserve la
+   place de l'icone, et l'icone est bornee en hauteur (-fx-max-height) pour
+   ne jamais depasser la hauteur du champ et donc ne jamais l'agrandir. */
+
+.password-input {
+    -fx-padding: 8px 34px 8px 12px;
+}
+
+.password-toggle-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-width: 0;
+    -fx-text-fill: #9AA1B4;
+    -fx-font-size: 14px;
+    -fx-padding: 0;
+    -fx-min-width: 26px;
+    -fx-max-width: 26px;
+    -fx-min-height: 22px;
+    -fx-max-height: 22px;
+    -fx-pref-height: 22px;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-translate-x: -6;
+}
+
+.password-toggle-button:hover {
+    -fx-text-fill: #55607A;
+    -fx-background-color: #F1F3F9;
+}
+
+.password-toggle-button-active {
+    -fx-text-fill: #5883C9;
 }

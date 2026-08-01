@@ -23,10 +23,34 @@ public class LoginController {
     private PasswordField passwordField;
 
     @FXML
+    private TextField passwordVisibleField;
+
+    @FXML
+    private Button togglePasswordButton;
+
+    @FXML
     private Label statusLabel;
 
     @FXML
     private Button loginButton;
+
+    @FXML
+    private void initialize() {
+        passwordVisibleField.textProperty().bindBidirectional(passwordField.textProperty());
+    }
+
+    @FXML
+    private void handleTogglePassword() {
+        boolean afficherEnClair = !passwordVisibleField.isVisible();
+        passwordVisibleField.setVisible(afficherEnClair);
+        passwordVisibleField.setManaged(afficherEnClair);
+        passwordField.setVisible(!afficherEnClair);
+        passwordField.setManaged(!afficherEnClair);
+        togglePasswordButton.getStyleClass().remove("password-toggle-button-active");
+        if (afficherEnClair) {
+            togglePasswordButton.getStyleClass().add("password-toggle-button-active");
+        }
+    }
 
     @FXML
     private void handleLogin() {
