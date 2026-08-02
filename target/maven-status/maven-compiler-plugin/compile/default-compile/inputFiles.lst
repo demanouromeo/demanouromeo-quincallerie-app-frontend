@@ -2,6 +2,7 @@ C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincai
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\ApprovisionnementsTabController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\BackofficeController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\CategoriesTabController.java
+C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\ChangerMotDePasseController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\DashboardTabController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\FournisseursTabController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\LoginController.java
@@ -15,6 +16,7 @@ C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincai
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ApprovisionnementResponse.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\CategorieRequest.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\CategorieResponse.java
+C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ChangePasswordRequest.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\FournisseurRequest.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\FournisseurResponse.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\LigneApproSaisie.java
@@ -25,6 +27,7 @@ C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincai
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\LigneVenteResponse.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\LoginRequest.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\LoginResponse.java
+C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\MessageResponse.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ProduitRequest.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ProduitResponse.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ProduitVenduDto.java

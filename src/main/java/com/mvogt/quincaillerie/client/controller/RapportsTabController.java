@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,6 +20,9 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -40,7 +44,14 @@ public class RapportsTabController {
     @FXML
     private TableColumn<ProduitVenduDto, Integer> colQuantiteVendue;
     @FXML
+    private LineChart<String, Number> ventesTendanceChart;
+    @FXML
+    private BarChart<String, Number> topProduitsChart;
+    @FXML
     private Label statusLabel;
+
+    private static final DateTimeFormatter FORMAT_JOUR = DateTimeFormatter.ofPattern("dd/MM");
+    private static final int NB_JOURS_TENDANCE = 14;
 
     private final ObservableList<ProduitVenduDto> topProduits = FXCollections.observableArrayList();
 
@@ -86,6 +97,12 @@ public class RapportsTabController {
         int nbSemaine = 0;
         int nbMois = 0;
 
+        Map<LocalDate, BigDecimal> totauxParJour = new LinkedHashMap<>();
+        LocalDate debutTendance = aujourdHui.minusDays(NB_JOURS_TENDANCE - 1);
+        for (LocalDate jour = debutTendance; !jour.isAfter(aujourdHui); jour = jour.plusDays(1)) {
+            totauxParJour.put(jour, BigDecimal.ZERO);
+        }
+
         for (VenteResponse vente : ventes) {
             LocalDate dateVente = vente.dateVente().atZone(zone).toLocalDate();
             if (!dateVente.isBefore(debutMois)) {
@@ -100,11 +117,17 @@ public class RapportsTabController {
                 totalJour = totalJour.add(vente.montantTotal());
                 nbJour++;
             }
+            totauxParJour.computeIfPresent(dateVente, (jour, total) -> total.add(vente.montantTotal()));
         }
 
         ventesJourLabel.setText(nbJour + " vente(s) — " + totalJour + " FCFA");
         ventesSemaineLabel.setText(nbSemaine + " vente(s) — " + totalSemaine + " FCFA");
         ventesMoisLabel.setText(nbMois + " vente(s) — " + totalMois + " FCFA");
+
+        XYChart.Series<String, Number> serieTendance = new XYChart.Series<>();
+        totauxParJour.forEach((jour, total) ->
+                serieTendance.getData().add(new XYChart.Data<>(jour.format(FORMAT_JOUR), total)));
+        ventesTendanceChart.setData(FXCollections.observableArrayList(serieTendance));
     }
 
     private void calculerTopProduits(List<VenteResponse> ventes) {
@@ -121,5 +144,12 @@ public class RapportsTabController {
                 .limit(10)
                 .toList();
         topProduits.setAll(classement);
+
+        XYChart.Series<String, Number> serieTopProduits = new XYChart.Series<>();
+        classement.stream()
+                .limit(6)
+                .forEach(produit -> serieTopProduits.getData()
+                        .add(new XYChart.Data<>(produit.produitNom(), produit.quantiteVendue())));
+        topProduitsChart.setData(FXCollections.observableArrayList(serieTopProduits));
     }
 }

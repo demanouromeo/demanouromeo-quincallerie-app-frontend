@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class VenteScreenController {
@@ -200,6 +201,22 @@ public class VenteScreenController {
             Alert alert = new Alert(AlertType.WARNING,
                     "Vente enregistree mais l'impression du recu a echoue : " + e.getMessage());
             alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleChangerMotDePasse() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/changer_mot_de_passe.fxml"));
+            Parent root = loader.load();
+            Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(sessionLabel.getScene().getWindow());
+            dialog.setTitle("Changer mot de passe");
+            dialog.setScene(new Scene(root));
+            dialog.showAndWait();
+        } catch (IOException e) {
+            statusLabel.setText("Erreur ouverture ecran : " + e.getMessage());
         }
     }
 

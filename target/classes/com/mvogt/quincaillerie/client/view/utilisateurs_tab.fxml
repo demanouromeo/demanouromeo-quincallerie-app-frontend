@@ -23,6 +23,7 @@
             <columns>
                 <TableColumn fx:id="colNom" text="Nom" prefWidth="150"/>
                 <TableColumn fx:id="colLogin" text="Login" prefWidth="120"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
                 <TableColumn fx:id="colRole" text="Role" prefWidth="110"/>
                 <TableColumn fx:id="colActif" text="Actif" prefWidth="60"/>
             </columns>
@@ -37,14 +38,17 @@
             <Label text="Login" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
             <TextField fx:id="loginField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-            <Label text="Mot de passe" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-            <PasswordField fx:id="motDePasseField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
-            <Label text="Role" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-            <ComboBox fx:id="roleCombo" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity"/>
+            <Label text="Mot de passe" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <PasswordField fx:id="motDePasseField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-            <Label text="Actif" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-            <CheckBox fx:id="actifCheck" GridPane.columnIndex="1" GridPane.rowIndex="4" selected="true"/>
+            <Label text="Role" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <ComboBox fx:id="roleCombo" GridPane.columnIndex="1" GridPane.rowIndex="4" maxWidth="Infinity"/>
+
+            <Label text="Actif" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <CheckBox fx:id="actifCheck" GridPane.columnIndex="1" GridPane.rowIndex="5" selected="true"/>
         </GridPane>
         <Label text="(laisser le mot de passe vide pour ne pas le changer)" wrapText="true" styleClass="hint-label"/>
         <HBox spacing="6">
@@ -56,6 +60,11 @@
             <Button text="Enregistrer" onAction="#handleEnregistrer">
                 <tooltip>
                     <Tooltip text="Enregistrer l'utilisateur"/>
+                </tooltip>
+            </Button>
+            <Button text="Supprimer" onAction="#handleSupprimer" styleClass="button-danger-outline">
+                <tooltip>
+                    <Tooltip text="Desactiver le compte selectionne (login bloque, historique conserve)"/>
                 </tooltip>
             </Button>
         </HBox>

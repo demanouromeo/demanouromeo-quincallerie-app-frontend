@@ -27,6 +27,8 @@ public class UtilisateursTabController {
     @FXML
     private TableColumn<UtilisateurResponse, String> colLogin;
     @FXML
+    private TableColumn<UtilisateurResponse, String> colEmail;
+    @FXML
     private TableColumn<UtilisateurResponse, String> colRole;
     @FXML
     private TableColumn<UtilisateurResponse, Boolean> colActif;
@@ -34,6 +36,8 @@ public class UtilisateursTabController {
     private TextField nomField;
     @FXML
     private TextField loginField;
+    @FXML
+    private TextField emailField;
     @FXML
     private PasswordField motDePasseField;
     @FXML
@@ -50,6 +54,7 @@ public class UtilisateursTabController {
     public void initialize() {
         colNom.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().nom()));
         colLogin.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().login()));
+        colEmail.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().email()));
         colRole.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().role()));
         colActif.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().actif()));
         utilisateursTable.setItems(utilisateurs);
@@ -79,6 +84,7 @@ public class UtilisateursTabController {
         selection = utilisateur;
         nomField.setText(utilisateur.nom());
         loginField.setText(utilisateur.login());
+        emailField.setText(utilisateur.email());
         motDePasseField.clear();
         roleCombo.getSelectionModel().select(utilisateur.role());
         actifCheck.setSelected(utilisateur.actif());
@@ -90,6 +96,7 @@ public class UtilisateursTabController {
         utilisateursTable.getSelectionModel().clearSelection();
         nomField.clear();
         loginField.clear();
+        emailField.clear();
         motDePasseField.clear();
         roleCombo.getSelectionModel().clearSelection();
         actifCheck.setSelected(true);
@@ -99,13 +106,15 @@ public class UtilisateursTabController {
     private void handleEnregistrer() {
         if (nomField.getText() == null || nomField.getText().isBlank()
                 || loginField.getText() == null || loginField.getText().isBlank()
+                || emailField.getText() == null || emailField.getText().isBlank()
                 || roleCombo.getSelectionModel().getSelectedItem() == null) {
-            statusLabel.setText("Nom, login et role sont obligatoires.");
+            statusLabel.setText("Nom, login, email et role sont obligatoires.");
             return;
         }
         UtilisateurRequest request = new UtilisateurRequest(
                 nomField.getText().trim(),
                 loginField.getText().trim(),
+                emailField.getText().trim(),
                 motDePasseField.getText(),
                 roleCombo.getSelectionModel().getSelectedItem(),
                 actifCheck.isSelected());
@@ -122,6 +131,22 @@ public class UtilisateursTabController {
             charger();
         } catch (Exception e) {
             statusLabel.setText("Erreur enregistrement : " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleSupprimer() {
+        if (selection == null) {
+            statusLabel.setText("Selectionnez un utilisateur a supprimer.");
+            return;
+        }
+        try {
+            Session.getInstance().getApiClient().delete("/utilisateurs/" + selection.id());
+            statusLabel.setText("Utilisateur desactive.");
+            handleNouveau();
+            charger();
+        } catch (Exception e) {
+            statusLabel.setText("Erreur suppression : " + e.getMessage());
         }
     }
 }
