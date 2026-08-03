@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quincaillerie Etoud - Gestion de stock</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <h1>Quincaillerie Etoud</h1>
+        <p>
+          Enregistrez chaque vente et visualisez immédiatement l'état du stock pour mieux gérer les
+          réapprovisionnements.
+        </p>
+      </section>
+
+      <section class="layout">
+        <article class="panel">
+          <h2>Vue rapide du stock</h2>
+          <ul id="summary" class="summary"></ul>
+        </article>
+
+        <article class="panel">
+          <h2>Enregistrer une vente</h2>
+          <form id="sale-form">
+            <label class="field">
+              Produit
+              <select id="product" name="product"></select>
+            </label>
+
+            <label class="field">
+              Quantité vendue
+              <input id="quantity" name="quantity" type="number" min="1" value="1" required />
+            </label>
+
+            <button type="submit">Mettre à jour le stock</button>
+          </form>
+          <p id="message" class="message" aria-live="polite"></p>
+        </article>
+
+        <article class="panel">
+          <h2>État détaillé du stock</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Produit</th>
+                <th>Catégorie</th>
+                <th>Stock</th>
+                <th>Seuil</th>
+                <th>État</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-body"></tbody>
+          </table>
+        </article>
+      </section>
+    </main>
+
+    <script src="./src/stock-manager.js"></script>
+    <script src="./src/app.js"></script>
+  </body>
+</html>

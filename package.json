@@ -1,0 +1,16 @@
+{
+  "name": "demanouromeo-quincallerie-app-frontend",
+  "version": "1.0.0",
+  "description": "Frontend de gestion de stock pour la quincaillerie Etoud",
+  "main": "src/stock-manager.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://localhost:26831/demanouromeo/demanouromeo-quincallerie-app-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
