@@ -190,7 +190,7 @@
 /* ---------- Graphiques du tableau de bord ---------- */
 
 .stock-status-chart {
-    -fx-legend-side: bottom;
+    -fx-legend-side: right;
 }
 
 .stock-status-chart .chart-legend-item {
@@ -210,8 +210,17 @@
     -fx-pie-color: #D0362C;
 }
 
-.category-bar-chart .chart-bar {
-    -fx-bar-fill: #5883C9;
+/* Stock par categorie : une couleur distincte par categorie (meme pattern
+   qu'au-dessus, chaque categorie est sa propre serie a un seul point, cf.
+   DashboardTabController#mettreAJourGraphiques) — meme palette categorielle. */
+
+.category-bar-chart {
+    -fx-legend-side: right;
+}
+
+.category-bar-chart .chart-legend-item {
+    -fx-text-fill: #55607A;
+    -fx-font-size: 11px;
 }
 
 .category-bar-chart .axis {
@@ -225,6 +234,45 @@
 .category-bar-chart .chart-plot-background {
     -fx-background-color: transparent;
 }
+
+.category-bar-chart .series0 { -fx-bar-fill: #2a78d6; }
+.category-bar-chart .series1 { -fx-bar-fill: #eb6834; }
+.category-bar-chart .series2 { -fx-bar-fill: #1baf7a; }
+.category-bar-chart .series3 { -fx-bar-fill: #eda100; }
+.category-bar-chart .series4 { -fx-bar-fill: #e87ba4; }
+.category-bar-chart .series5 { -fx-bar-fill: #008300; }
+
+/* Top produits vendus : une couleur distincte par produit (chaque produit est
+   sa propre serie a un seul point, cf. RapportsTabController#calculerTopProduits)
+   — palette categorielle validee (CVD-safe) blue/orange/aqua/yellow/magenta/green. */
+
+.top-produits-chart {
+    -fx-legend-side: right;
+}
+
+.top-produits-chart .chart-legend-item {
+    -fx-text-fill: #55607A;
+    -fx-font-size: 11px;
+}
+
+.top-produits-chart .axis {
+    -fx-tick-label-fill: #55607A;
+}
+
+.top-produits-chart .axis-label {
+    -fx-text-fill: #55607A;
+}
+
+.top-produits-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.top-produits-chart .series0 { -fx-bar-fill: #2a78d6; }
+.top-produits-chart .series1 { -fx-bar-fill: #eb6834; }
+.top-produits-chart .series2 { -fx-bar-fill: #1baf7a; }
+.top-produits-chart .series3 { -fx-bar-fill: #eda100; }
+.top-produits-chart .series4 { -fx-bar-fill: #e87ba4; }
+.top-produits-chart .series5 { -fx-bar-fill: #008300; }
 
 /* ---------- Controles ----------
    Forme/ombre/hover/focus/disabled par defaut viennent desormais du theme

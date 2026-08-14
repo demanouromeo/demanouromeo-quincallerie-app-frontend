@@ -60,12 +60,12 @@
         <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS" prefHeight="260">
             <Label text="Top produits vendus" styleClass="card-title"/>
             <BarChart fx:id="topProduitsChart" styleClass="top-produits-chart"
-                      legendVisible="false" animated="false" VBox.vgrow="ALWAYS">
+                      legendVisible="true" animated="false" VBox.vgrow="ALWAYS">
                 <xAxis>
-                    <CategoryAxis fx:id="topProduitsAxis" label="Produit"/>
+                    <NumberAxis fx:id="topProduitsValueAxis" label="Quantite vendue"/>
                 </xAxis>
                 <yAxis>
-                    <NumberAxis fx:id="topProduitsValueAxis" label="Quantite vendue"/>
+                    <CategoryAxis fx:id="topProduitsAxis" label="Produit"/>
                 </yAxis>
             </BarChart>
         </VBox>

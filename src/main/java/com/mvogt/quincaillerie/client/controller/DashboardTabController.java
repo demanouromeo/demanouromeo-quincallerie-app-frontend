@@ -18,6 +18,7 @@ import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
@@ -27,6 +28,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 
 /**
  * Vue d'ensemble du stock avec actualisation automatique periodique. L'appel HTTP (bloquant,
@@ -47,6 +50,8 @@ public class DashboardTabController {
     @FXML
     private Label derniereMajLabel;
     @FXML
+    private TextField rechercheField;
+    @FXML
     private TableView<ProduitResponse> produitsTable;
     @FXML
     private TableColumn<ProduitResponse, ProduitResponse> colIndex;
@@ -65,11 +70,12 @@ public class DashboardTabController {
     @FXML
     private PieChart statutChart;
     @FXML
-    private BarChart<String, Number> categorieChart;
+    private BarChart<Number, String> categorieChart;
     @FXML
     private Label statusLabel;
 
     private final ObservableList<ProduitResponse> produits = FXCollections.observableArrayList();
+    private final FilteredList<ProduitResponse> produitsFiltres = new FilteredList<>(produits, p -> true);
     private final ScheduledExecutorService executeur = Executors.newSingleThreadScheduledExecutor(daemonThreadFactory());
     private ScheduledFuture<?> tacheAuto;
 
@@ -111,7 +117,15 @@ public class DashboardTabController {
                 setGraphic(badge);
             }
         });
-        produitsTable.setItems(produits);
+        produitsTable.setItems(produitsFiltres);
+
+        rechercheField.textProperty().addListener((obs, ancien, texte) -> {
+            String recherche = texte == null ? "" : texte.strip().toLowerCase();
+            produitsFiltres.setPredicate(produit -> recherche.isEmpty()
+                    || produit.reference().toLowerCase().contains(recherche)
+                    || produit.nom().toLowerCase().contains(recherche)
+                    || produit.categorieNom().toLowerCase().contains(recherche));
+        });
 
         actualisationAutoCheckBox.selectedProperty().addListener((obs, ancien, actif) -> {
             if (actif) {
@@ -184,12 +198,32 @@ public class DashboardTabController {
         for (ProduitResponse produit : resultat) {
             stockParCategorie.merge(produit.categorieNom(), produit.stockActuel(), Integer::sum);
         }
-        XYChart.Series<String, Number> serie = new XYChart.Series<>();
+
+        // Une serie par categorie (plutot qu'une seule serie multi-points) pour que
+        // chaque barre ait sa propre couleur (CSS .seriesN) et sa propre entree de
+        // legende — meme pattern que RapportsTabController#calculerTopProduits.
+        ObservableList<XYChart.Series<Number, String>> series = FXCollections.observableArrayList();
         stockParCategorie.entrySet().stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .limit(6)
-                .forEach(entry -> serie.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue())));
-        categorieChart.setData(FXCollections.observableArrayList(serie));
+                .forEach(entry -> {
+                    XYChart.Series<Number, String> serie = new XYChart.Series<>();
+                    serie.setName(entry.getKey());
+                    XYChart.Data<Number, String> point = new XYChart.Data<>(entry.getValue(), entry.getKey());
+                    installerTooltipCategorie(point, entry.getKey(), entry.getValue());
+                    serie.getData().add(point);
+                    series.add(serie);
+                });
+        categorieChart.setData(series);
+    }
+
+    private void installerTooltipCategorie(XYChart.Data<Number, String> point, String categorie, int stock) {
+        Tooltip tooltip = new Tooltip(categorie + " : " + stock + " unite(s) en stock");
+        point.nodeProperty().addListener((obs, ancienNoeud, nouveauNoeud) -> {
+            if (nouveauNoeud != null) {
+                Tooltip.install(nouveauNoeud, tooltip);
+            }
+        });
     }
 
     private static ThreadFactory daemonThreadFactory() {

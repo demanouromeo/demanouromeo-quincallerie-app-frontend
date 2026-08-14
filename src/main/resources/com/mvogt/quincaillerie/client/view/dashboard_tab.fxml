@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -51,18 +52,22 @@
         <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS" prefHeight="260">
             <Label text="Stock par categorie (top 6)" styleClass="card-title"/>
             <BarChart fx:id="categorieChart" styleClass="category-bar-chart"
-                      legendVisible="false" animated="false" VBox.vgrow="ALWAYS">
+                      legendVisible="true" animated="false" VBox.vgrow="ALWAYS">
                 <xAxis>
-                    <CategoryAxis fx:id="categorieAxis" label="Categorie"/>
+                    <NumberAxis fx:id="categorieValueAxis" label="Unites en stock"/>
                 </xAxis>
                 <yAxis>
-                    <NumberAxis fx:id="categorieValueAxis" label="Unites en stock"/>
+                    <CategoryAxis fx:id="categorieAxis" label="Categorie"/>
                 </yAxis>
             </BarChart>
         </VBox>
     </HBox>
     <VBox spacing="10" styleClass="card" VBox.vgrow="ALWAYS">
-        <Label text="Inventaire produits" styleClass="card-title"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Inventaire produits" styleClass="card-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="rechercheField" promptText="Rechercher (reference, produit, categorie)" prefWidth="280"/>
+        </HBox>
         <TableView fx:id="produitsTable" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="colIndex" text="#" prefWidth="40" sortable="false"/>

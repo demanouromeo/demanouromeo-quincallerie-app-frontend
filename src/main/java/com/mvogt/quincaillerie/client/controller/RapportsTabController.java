@@ -26,6 +26,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 
 public class RapportsTabController {
 
@@ -46,12 +47,13 @@ public class RapportsTabController {
     @FXML
     private LineChart<String, Number> ventesTendanceChart;
     @FXML
-    private BarChart<String, Number> topProduitsChart;
+    private BarChart<Number, String> topProduitsChart;
     @FXML
     private Label statusLabel;
 
     private static final DateTimeFormatter FORMAT_JOUR = DateTimeFormatter.ofPattern("dd/MM");
     private static final int NB_JOURS_TENDANCE = 14;
+    private static final int MAX_LONGUEUR_NOM_AXE = 24;
 
     private final ObservableList<ProduitVenduDto> topProduits = FXCollections.observableArrayList();
 
@@ -145,11 +147,37 @@ public class RapportsTabController {
                 .toList();
         topProduits.setAll(classement);
 
-        XYChart.Series<String, Number> serieTopProduits = new XYChart.Series<>();
+        // Une serie par produit (plutot qu'une seule serie multi-points) pour que
+        // chaque barre ait sa propre couleur (CSS .seriesN) et sa propre entree de
+        // legende portant le nom complet du produit.
+        ObservableList<XYChart.Series<Number, String>> series = FXCollections.observableArrayList();
         classement.stream()
                 .limit(6)
-                .forEach(produit -> serieTopProduits.getData()
-                        .add(new XYChart.Data<>(produit.produitNom(), produit.quantiteVendue())));
-        topProduitsChart.setData(FXCollections.observableArrayList(serieTopProduits));
+                .forEach(produit -> {
+                    XYChart.Series<Number, String> serie = new XYChart.Series<>();
+                    serie.setName(produit.produitNom());
+                    XYChart.Data<Number, String> point = new XYChart.Data<>(
+                            produit.quantiteVendue(), tronquerNomProduit(produit.produitNom()));
+                    installerTooltip(point, produit);
+                    serie.getData().add(point);
+                    series.add(serie);
+                });
+        topProduitsChart.setData(series);
+    }
+
+    private void installerTooltip(XYChart.Data<Number, String> point, ProduitVenduDto produit) {
+        Tooltip tooltip = new Tooltip(produit.produitNom() + " : " + produit.quantiteVendue() + " unite(s) vendue(s)");
+        point.nodeProperty().addListener((obs, ancienNoeud, nouveauNoeud) -> {
+            if (nouveauNoeud != null) {
+                Tooltip.install(nouveauNoeud, tooltip);
+            }
+        });
+    }
+
+    private String tronquerNomProduit(String nom) {
+        if (nom.length() <= MAX_LONGUEUR_NOM_AXE) {
+            return nom;
+        }
+        return nom.substring(0, MAX_LONGUEUR_NOM_AXE - 1) + "…";
     }
 }
