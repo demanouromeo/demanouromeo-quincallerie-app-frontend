@@ -6,6 +6,7 @@ C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincai
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\DashboardTabController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\FournisseursTabController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\LoginController.java
+C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\ParametresTabController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\ProduitsTabController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\RapportsTabController.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\controller\UtilisateursTabController.java
@@ -28,6 +29,8 @@ C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincai
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\LoginRequest.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\LoginResponse.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\MessageResponse.java
+C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ParametresRequest.java
+C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ParametresResponse.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ProduitRequest.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ProduitResponse.java
 C:\SPRING_PROJECTS\quinquallerie\frontend-javafx\src\main\java\com\mvogt\quincaillerie\client\model\ProduitVenduDto.java

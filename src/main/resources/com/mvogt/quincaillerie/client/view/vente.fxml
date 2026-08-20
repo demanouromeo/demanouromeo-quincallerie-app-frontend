@@ -31,6 +31,11 @@
             <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="12" styleClass="header-box">
                 <Label text="Poste de vente" styleClass="welcome-label"/>
                 <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="retourBackofficeButton" text="Retour au back-office" onAction="#handleRetourBackoffice" styleClass="button-outline">
+                    <tooltip>
+                        <Tooltip text="Retourner a l'espace de gestion"/>
+                    </tooltip>
+                </Button>
                 <Label fx:id="sessionLabel" styleClass="session-pill"/>
                 <Button text="Changer mot de passe" onAction="#handleChangerMotDePasse" styleClass="button-outline">
                     <tooltip>
@@ -50,10 +55,10 @@
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
-            <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS">
+            <VBox spacing="10" styleClass="card" minWidth="440" HBox.hgrow="ALWAYS">
                 <Label text="Rechercher un produit" styleClass="card-title"/>
                 <HBox spacing="6">
-                    <TextField fx:id="rechercheField" promptText="Reference ou nom" HBox.hgrow="ALWAYS"/>
+                    <TextField fx:id="rechercheField" promptText="Reference ou nom" minWidth="120" HBox.hgrow="ALWAYS"/>
                     <Button text="Rechercher" onAction="#handleRecherche" styleClass="button-outline">
                         <tooltip>
                             <Tooltip text="Rechercher un produit par reference ou nom"/>
@@ -62,10 +67,10 @@
                 </HBox>
                 <TableView fx:id="produitsTable" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colReference" text="Reference" prefWidth="100"/>
-                        <TableColumn fx:id="colNom" text="Nom" prefWidth="180"/>
-                        <TableColumn fx:id="colPrixVente" text="Prix" prefWidth="80"/>
-                        <TableColumn fx:id="colStock" text="Stock" prefWidth="70"/>
+                        <TableColumn fx:id="colReference" text="Reference" prefWidth="100" minWidth="100"/>
+                        <TableColumn fx:id="colNom" text="Nom" prefWidth="180" minWidth="150"/>
+                        <TableColumn fx:id="colPrixVente" text="Prix" prefWidth="80" minWidth="70"/>
+                        <TableColumn fx:id="colStock" text="Stock" prefWidth="70" minWidth="60"/>
                     </columns>
                 </TableView>
                 <HBox spacing="6" alignment="CENTER_LEFT">
@@ -78,14 +83,14 @@
                     </Button>
                 </HBox>
             </VBox>
-            <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS">
+            <VBox spacing="10" styleClass="card" minWidth="380" HBox.hgrow="ALWAYS">
                 <Label text="Panier" styleClass="card-title"/>
                 <TableView fx:id="panierTable" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colPanierProduit" text="Produit" prefWidth="150"/>
-                        <TableColumn fx:id="colPanierQuantite" text="Qte" prefWidth="60"/>
-                        <TableColumn fx:id="colPanierPrixUnitaire" text="P.U." prefWidth="80"/>
-                        <TableColumn fx:id="colPanierSousTotal" text="Sous-total" prefWidth="90"/>
+                        <TableColumn fx:id="colPanierProduit" text="Produit" prefWidth="150" minWidth="120"/>
+                        <TableColumn fx:id="colPanierQuantite" text="Qte" prefWidth="60" minWidth="50"/>
+                        <TableColumn fx:id="colPanierPrixUnitaire" text="P.U." prefWidth="80" minWidth="65"/>
+                        <TableColumn fx:id="colPanierSousTotal" text="Sous-total" prefWidth="90" minWidth="80"/>
                     </columns>
                 </TableView>
                 <Button text="Retirer la ligne selectionnee" onAction="#handleRetirerLigne" styleClass="button-danger-outline">
@@ -94,6 +99,10 @@
                     </tooltip>
                 </Button>
                 <Label fx:id="totalLabel" text="Total : 0 FCFA" styleClass="stat-value"/>
+                <HBox spacing="6" alignment="CENTER_LEFT">
+                    <Label text="Client (optionnel) :"/>
+                    <TextField fx:id="clientNomField" promptText="Nom du client" HBox.hgrow="ALWAYS"/>
+                </HBox>
                 <Button fx:id="validerButton" text="Valider la vente" onAction="#handleValiderVente" styleClass="button-block">
                     <tooltip>
                         <Tooltip text="Valider la vente et imprimer le recu"/>

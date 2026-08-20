@@ -8,7 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -27,6 +31,12 @@ public class LoginController {
 
     @FXML
     private Button togglePasswordButton;
+
+    @FXML
+    private Hyperlink motDePasseOublieLink;
+
+    @FXML
+    private CheckBox seSouvenirCheckBox;
 
     @FXML
     private Label statusLabel;
@@ -73,6 +83,11 @@ public class LoginController {
             LoginRequest request = new LoginRequest(login, motDePasse);
             LoginResponse response = Session.getInstance().getApiClient().post("/auth/login", request, LoginResponse.class);
             Session.getInstance().ouvrir(login, response.token(), response.role());
+            if (seSouvenirCheckBox.isSelected()) {
+                Session.getInstance().sauvegarderSession(login, response.token(), response.role());
+            } else {
+                Session.getInstance().effacerSessionSauvegardee();
+            }
             ouvrirEcranPourRole(response.role());
         } catch (Exception e) {
             statusLabel.setText(messageConvivial(e));
@@ -90,6 +105,14 @@ public class LoginController {
             return "Identifiant ou mot de passe incorrect.";
         }
         return "Erreur : impossible de contacter le serveur. Veuillez reessayer.";
+    }
+
+    @FXML
+    private void handleMotDePasseOublie() {
+        Alert alert = new Alert(AlertType.INFORMATION,
+                "Contactez votre administrateur pour reinitialiser votre mot de passe.");
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 
     private void ouvrirEcranPourRole(String role) throws Exception {

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.mvogt.quincaillerie.client.model.LignePanier;
 import com.mvogt.quincaillerie.client.model.LigneVenteRequest;
+import com.mvogt.quincaillerie.client.model.ParametresResponse;
 import com.mvogt.quincaillerie.client.model.ProduitResponse;
 import com.mvogt.quincaillerie.client.model.VenteRequest;
 import com.mvogt.quincaillerie.client.model.VenteResponse;
@@ -61,9 +62,23 @@ public class VenteScreenController {
     @FXML
     private Label totalLabel;
     @FXML
+    private TextField clientNomField;
+    @FXML
     private Button validerButton;
     @FXML
+    private Button retourBackofficeButton;
+    @FXML
     private Label statusLabel;
+
+    // Valeurs de repli si /api/parametres est injoignable au moment d'imprimer (miroir du
+    // meme repli deja present cote Angular dans receipt-view.ts) — reprennent exactement les
+    // valeurs seed des migrations V5__parametres_magasin.sql / V6__parametres_magasin_nom_domaine.sql.
+    private static final ParametresResponse PARAMETRES_PAR_DEFAUT = new ParametresResponse(
+            "QUINCAILLERIE MVOGT",
+            "Materiaux de construction & quincaillerie generale",
+            "+237 677 28 29 27",
+            "Yaounde",
+            "qmvogt@gmail.com");
 
     private final ObservableList<ProduitResponse> produits = FXCollections.observableArrayList();
     private final ObservableList<LignePanier> panier = FXCollections.observableArrayList();
@@ -72,6 +87,9 @@ public class VenteScreenController {
     @FXML
     public void initialize() {
         sessionLabel.setText(Session.getInstance().getLogin() + " (" + Session.getInstance().getRole() + ")");
+        boolean peutRevenirAuBackoffice = !"VENDEUR".equals(Session.getInstance().getRole());
+        retourBackofficeButton.setVisible(peutRevenirAuBackoffice);
+        retourBackofficeButton.setManaged(peutRevenirAuBackoffice);
 
         colReference.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().reference()));
         colNom.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().nom()));
@@ -183,9 +201,10 @@ public class VenteScreenController {
             VenteResponse vente = Session.getInstance().getApiClient()
                     .post("/ventes", new VenteRequest(lignes), VenteResponse.class);
             statusLabel.setText("Vente #" + vente.id() + " enregistree. Total : " + vente.montantTotal() + " FCFA.");
-            imprimerRecu(vente);
+            imprimerRecu(vente, clientNomField.getText());
             panier.clear();
             recalculerTotal();
+            clientNomField.clear();
             chargerProduits();
         } catch (Exception e) {
             statusLabel.setText("Echec de la vente : " + e.getMessage());
@@ -194,9 +213,15 @@ public class VenteScreenController {
         }
     }
 
-    private void imprimerRecu(VenteResponse vente) {
+    private void imprimerRecu(VenteResponse vente, String clientNom) {
+        ParametresResponse parametres;
         try {
-            receiptService.genererEtImprimer(vente, Session.getInstance().getLogin());
+            parametres = Session.getInstance().getApiClient().get("/parametres", ParametresResponse.class);
+        } catch (Exception e) {
+            parametres = PARAMETRES_PAR_DEFAUT;
+        }
+        try {
+            receiptService.genererEtImprimer(vente, parametres, clientNom);
         } catch (Exception e) {
             Alert alert = new Alert(AlertType.WARNING,
                     "Vente enregistree mais l'impression du recu a echoue : " + e.getMessage());
@@ -229,6 +254,19 @@ public class VenteScreenController {
             Stage stage = (Stage) sessionLabel.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Quincaillerie Mvogt");
+        } catch (IOException e) {
+            statusLabel.setText("Erreur navigation : " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleRetourBackoffice() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/backoffice.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) sessionLabel.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Quincaillerie Mvogt — Gestion");
         } catch (IOException e) {
             statusLabel.setText("Erreur navigation : " + e.getMessage());
         }

@@ -310,6 +310,7 @@
 }
 
 .button-outline {
+    -fx-background-color: white;
     -fx-text-fill: #55607A;
     -fx-border-color: #DDE1EC;
 }
@@ -319,6 +320,7 @@
 }
 
 .button-danger-outline {
+    -fx-background-color: white;
     -fx-text-fill: #D0362C;
     -fx-border-color: #F3C6C3;
 }

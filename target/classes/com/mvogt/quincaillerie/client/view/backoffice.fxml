@@ -18,12 +18,17 @@
     <top>
         <HBox alignment="CENTER_LEFT" styleClass="top-bar">
             <HBox alignment="CENTER_LEFT" spacing="10" prefWidth="210" styleClass="brand-box">
-                <Label text="Quincaillerie ETOUD" styleClass="brand-title"/>
+                <Label text="Quincaillerie Mvogt" styleClass="brand-title"/>
             </HBox>
             <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="12" styleClass="header-box">
                 <Label text="Espace de gestion" styleClass="welcome-label"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label fx:id="sessionLabel" styleClass="session-pill"/>
+                <Button fx:id="pointDeVenteButton" text="Point de vente" onAction="#handlePointDeVente" styleClass="button-outline">
+                    <tooltip>
+                        <Tooltip text="Ouvrir le poste de vente"/>
+                    </tooltip>
+                </Button>
                 <Button text="Changer mot de passe" onAction="#handleChangerMotDePasse" styleClass="button-outline">
                     <tooltip>
                         <Tooltip text="Changer le mot de passe de mon compte"/>
@@ -73,6 +78,11 @@
                 <Tab fx:id="rapportsTab" text="Rapports">
                     <content>
                         <fx:include fx:id="rapports" source="rapports_tab.fxml"/>
+                    </content>
+                </Tab>
+                <Tab fx:id="parametresTab" text="Parametres">
+                    <content>
+                        <fx:include fx:id="parametres" source="parametres_tab.fxml"/>
                     </content>
                 </Tab>
             </tabs>

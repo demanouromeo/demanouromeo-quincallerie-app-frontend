@@ -18,6 +18,7 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.PdfWriter;
 import com.mvogt.quincaillerie.client.model.LigneVenteResponse;
+import com.mvogt.quincaillerie.client.model.ParametresResponse;
 import com.mvogt.quincaillerie.client.model.VenteResponse;
 
 /** Genere un recu (ticket de caisse) PDF apres une vente et l'envoie a l'imprimante par defaut. */
@@ -28,7 +29,7 @@ public class ReceiptService {
     // Largeur ~80mm (ticket de caisse standard), hauteur extensible.
     private static final Rectangle TICKET_SIZE = new Rectangle(227f, 700f);
 
-    public File generer(VenteResponse vente) throws IOException {
+    public File generer(VenteResponse vente, ParametresResponse parametres, String clientNom) throws IOException {
         Path dossier = Path.of("receipts");
         Files.createDirectories(dossier);
         File fichier = dossier.resolve("vente_" + vente.id() + ".pdf").toFile();
@@ -42,12 +43,18 @@ public class ReceiptService {
             Font normal = FontFactory.getFont(FontFactory.COURIER, 8);
             Font gras = FontFactory.getFont(FontFactory.COURIER_BOLD, 9);
 
-            ajouterCentre(document, "Quincaillerie Mvogt", titre);
-            ajouterCentre(document, "Yaounde", normal);
+            ajouterCentre(document, parametres.nom(), titre);
+            ajouterCentre(document, parametres.domaine(), normal);
+            ajouterCentre(document, parametres.ville(), normal);
+            ajouterCentre(document, "Tel : " + parametres.telephone(), normal);
+            ajouterCentre(document, parametres.email(), normal);
             ajouter(document, new Paragraph(" "));
             ajouter(document, new Paragraph("Vente #" + vente.id(), normal));
             ajouter(document, new Paragraph("Date : " + DATE_FORMAT.format(vente.dateVente()), normal));
             ajouter(document, new Paragraph("Vendeur : " + vente.vendeurLogin(), normal));
+            if (clientNom != null && !clientNom.isBlank()) {
+                ajouter(document, new Paragraph("Client : " + clientNom.trim(), normal));
+            }
             ajouter(document, new Paragraph("------------------------------", normal));
 
             for (LigneVenteResponse ligne : vente.lignes()) {
@@ -80,8 +87,8 @@ public class ReceiptService {
         }
     }
 
-    public void genererEtImprimer(VenteResponse vente, String vendeurLogin) throws IOException {
-        File fichier = generer(vente);
+    public void genererEtImprimer(VenteResponse vente, ParametresResponse parametres, String clientNom) throws IOException {
+        File fichier = generer(vente, parametres, clientNom);
         imprimer(fichier);
     }
 

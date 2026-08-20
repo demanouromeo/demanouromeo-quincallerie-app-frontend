@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -27,6 +28,10 @@ public class BackofficeController {
     @FXML
     private Tab rapportsTab;
     @FXML
+    private Tab parametresTab;
+    @FXML
+    private Button pointDeVenteButton;
+    @FXML
     private DashboardTabController dashboardController;
 
     @FXML
@@ -35,7 +40,28 @@ public class BackofficeController {
         sessionLabel.setText(Session.getInstance().getLogin() + " (" + role + ")");
 
         if (!"ADMIN".equals(role)) {
-            tabPane.getTabs().removeAll(categoriesTab, utilisateursTab, rapportsTab);
+            tabPane.getTabs().removeAll(categoriesTab, utilisateursTab, rapportsTab, parametresTab);
+        }
+
+        // Seuls ADMIN (via ce bouton) et VENDEUR (qui atterrit deja sur vente.fxml comme
+        // ecran d'accueil) doivent pouvoir acceder au point de vente — GESTIONNAIRE ne gere
+        // que le stock/approvisionnements, pas les transactions de vente.
+        boolean peutAccederPointDeVente = "ADMIN".equals(role);
+        pointDeVenteButton.setVisible(peutAccederPointDeVente);
+        pointDeVenteButton.setManaged(peutAccederPointDeVente);
+    }
+
+    @FXML
+    private void handlePointDeVente() {
+        try {
+            dashboardController.detenerActualisation();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/vente.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) sessionLabel.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Quincaillerie Mvogt — Vente");
+        } catch (IOException e) {
+            sessionLabel.setText("Erreur navigation : " + e.getMessage());
         }
     }
 

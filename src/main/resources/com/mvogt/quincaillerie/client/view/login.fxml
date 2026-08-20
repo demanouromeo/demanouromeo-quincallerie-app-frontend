@@ -2,11 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -35,7 +39,11 @@
         </VBox>
 
         <VBox spacing="6">
-            <Label text="Mot de passe" styleClass="field-label"/>
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Mot de passe" styleClass="field-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Hyperlink fx:id="motDePasseOublieLink" text="Mot de passe oublie ?" onAction="#handleMotDePasseOublie"/>
+            </HBox>
             <StackPane alignment="CENTER_RIGHT">
                 <PasswordField fx:id="passwordField" styleClass="password-input"/>
                 <TextField fx:id="passwordVisibleField" managed="false" visible="false" styleClass="password-input"/>
@@ -44,6 +52,8 @@
                         StackPane.alignment="CENTER_RIGHT"/>
             </StackPane>
         </VBox>
+
+        <CheckBox fx:id="seSouvenirCheckBox" text="Se souvenir de moi"/>
 
         <Button fx:id="loginButton" text="Se connecter" onAction="#handleLogin"
                 maxWidth="Infinity" styleClass="button-block"/>

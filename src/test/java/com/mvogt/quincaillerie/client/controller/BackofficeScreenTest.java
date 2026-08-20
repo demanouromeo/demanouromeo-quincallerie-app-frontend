@@ -10,6 +10,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import com.mvogt.quincaillerie.client.session.Session;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
@@ -46,6 +47,12 @@ class BackofficeScreenTest extends ApplicationTest {
                 "L'onglet Tableau de bord doit etre present");
         assertTrue(tabPane.getTabs().stream().anyMatch(tab -> "rapportsTab".equals(tab.getId())),
                 "Rapports doit rester visible pour ADMIN");
+        assertTrue(tabPane.getTabs().stream().anyMatch(tab -> "parametresTab".equals(tab.getId())),
+                "Parametres doit rester visible pour ADMIN");
+
+        Button pointDeVenteButton = (Button) loader.<javafx.scene.layout.BorderPane>getRoot()
+                .lookup("#pointDeVenteButton");
+        assertTrue(pointDeVenteButton.isVisible(), "Le bouton Point de vente doit etre visible pour ADMIN");
 
         BackofficeController controller = loader.getController();
         assertNotNull(controller);
@@ -70,5 +77,12 @@ class BackofficeScreenTest extends ApplicationTest {
                 "L'onglet Tableau de bord doit rester visible pour GESTIONNAIRE");
         assertFalse(tabPane.getTabs().stream().anyMatch(tab -> "rapportsTab".equals(tab.getId())),
                 "Rapports doit etre retire pour GESTIONNAIRE");
+        assertFalse(tabPane.getTabs().stream().anyMatch(tab -> "parametresTab".equals(tab.getId())),
+                "Parametres doit etre retire pour GESTIONNAIRE");
+
+        Button pointDeVenteButton = (Button) loader.<javafx.scene.layout.BorderPane>getRoot()
+                .lookup("#pointDeVenteButton");
+        assertFalse(pointDeVenteButton.isVisible(),
+                "Le bouton Point de vente doit etre cache pour GESTIONNAIRE (seuls ADMIN et VENDEUR y accedent)");
     }
 }

@@ -1,17 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.mvogt.quincaillerie.client.controller.LoginScreenTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 5.247 s <<< FAILURE! -- in com.mvogt.quincaillerie.client.controller.LoginScreenTest
-com.mvogt.quincaillerie.client.controller.LoginScreenTest.tentativeDeConnexionAfficheUnMessageDeStatut -- Time elapsed: 4.238 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
-	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:231)
-	at com.mvogt.quincaillerie.client.controller.LoginScreenTest.tentativeDeConnexionAfficheUnMessageDeStatut(LoginScreenTest.java:51)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.009 s -- in com.mvogt.quincaillerie.client.controller.LoginScreenTest
